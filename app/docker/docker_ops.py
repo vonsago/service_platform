@@ -13,5 +13,5 @@ class DcokerClient():
         self.client = docker.from_env()
 
     def pull_images(self, images):
-        images = [client.images.pull(im) for im in images]
+        images = [self.client.images.pull(im) for im in images]
         return images
