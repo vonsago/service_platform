@@ -18,8 +18,9 @@ def instance_create(instance_id):
     request_data = request.get_json()
     image = request_data.get("image")
     docker.run(image)
+    status = docker.get_image_tag_status(image)
 
-    return {}, 201
+    return {"status": status}, 201
 
 def instance_get(instance_id):
     return {}, 200
