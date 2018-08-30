@@ -8,7 +8,18 @@
 '''
 
 from flask import Blueprint
+from .instance import instance_create
 
 instance_management = Blueprint("instance_management", __name__)
 
-instance_management.add_url_rule()
+instance_management.add_url_rule(
+        rule="/v1/instance/<instance_id>",
+        view_func=instance_create,
+        method=["POST"]
+        )
+
+instance_management.add_url_rule(
+        rule="/v1/instance/<instance_id>",
+        view_func=instance_get,
+        method=["GET"]
+        )
