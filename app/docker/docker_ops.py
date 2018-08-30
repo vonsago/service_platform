@@ -29,20 +29,40 @@ class DockerClient():
     def list_images(self):
         return self.client.images.list()
 
-    def exsit_container(self, image):
+    def exsit_image(self, image_tag):
         for image in self.list_images():
             if image_tag in image.tags:
-                LOG.info(f"{image_tag} is already running")
+                LOG.info(f"image: {image_tag} is already pulled")
                 return True
         return False
 
+    def exsit_container(self, image_tag):
+        for container in self.list_containers():
+            if image_tag in container.tags:
+                LOG.info(f"container: {image_tag} is already running")
+                return True
+        return False
+
+    def get_image_tag_status(self, image_tag):
+        pass
+
+    def get_container(self, image_tag):
+        for container in self.list_containers():
+            if image_tag in container.tags:
+                return container
+        return None
+
     def run(self, image_tag, backend=True):
-        if not exsit_container(images_tag):
+        if not self.exsit_image(image_tag):
             self.pull_images([image_tag])
 
+        if self.exsit_container(image_tag):
+            return self.get_container(image_tag)
+
         if backend:
-            self.client.containers.run(image_tag, detach=True)
-            LOG.info(f"container: {image_tag} is running in backend")
+            container = self.client.containers.run(image_tag, detach=True)
+            LOG.info(f"container: {image_tag} running in backend")
+            return container
 
     def stop(self, image_tag, stop_all = False):
         for container in self.list_containers():
@@ -59,9 +79,10 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 
-    docker_client.run("mysql:5.7.19")
+    s = docker_client.run("mysql:5.7.19")
+    print(s.short_id)
 
-    print(docker_client.list_container())
+    #print(docker_client.list_containers()[0].status)
 
     docker_client.stop("mysql:5.7.19")
 
