@@ -29,14 +29,15 @@ class DockerClient():
     def list_images(self):
         return self.client.images.list()
 
-    def run(self, image_tag, backend=True):
-        exsit_container = False
+    def exsit_container(self, image):
         for image in self.list_images():
             if image_tag in image.tags:
-                exsit_container = True
                 LOG.info(f"{image_tag} is already running")
-                break
-        if not exsit_container:
+                return True
+        return False
+
+    def run(self, image_tag, backend=True):
+        if not exsit_container(images_tag):
             self.pull_images([image_tag])
 
         if backend:
@@ -52,13 +53,15 @@ class DockerClient():
                 container.stop()
                 LOG.info(f"stop {image_tag} success")
 
+docker_client = DockerClient()
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
-    docker = DockerClient()
 
-    docker.run("mysql:5.7.19")
+    docker_client.run("mysql:5.7.19")
 
-    docker.stop("mysql:5.7.19")
+    print(docker_client.list_container())
+
+    docker_client.stop("mysql:5.7.19")
 
