@@ -38,7 +38,7 @@ class DockerClient():
 
     def exsit_container(self, image_tag):
         for container in self.list_containers():
-            if image_tag in container.tags:
+            if image_tag in container.image.tags:
                 LOG.info(f"container: {image_tag} is already running")
                 return True
         return False
@@ -52,7 +52,7 @@ class DockerClient():
                 return container
         return None
 
-    def run(self, image_tag, backend=True):
+    def run(self, image_tag, ports, volumes, backend=True):
         if not self.exsit_image(image_tag):
             self.pull_images([image_tag])
 
@@ -60,7 +60,8 @@ class DockerClient():
             return self.get_container(image_tag)
 
         if backend:
-            container = self.client.containers.run(image_tag, detach=True)
+            container = self.client.containers.run(image_tag, ports=ports,
+                    volumes=volumes, detach=True)
             LOG.info(f"container: {image_tag} running in backend")
             return container
 
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 
-    s = docker_client.run("mysql:5.7.19")
+    s = docker_client.run("mysql:5.7.19", ports={"3306/tcp": 3306},volumes=["mysqldata:/var/lib/mysql"])
     print(s.short_id)
 
     #print(docker_client.list_containers()[0].status)
