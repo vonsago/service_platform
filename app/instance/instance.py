@@ -17,10 +17,15 @@ def update_instance_status(image_tag):
 def instance_create(instance_id):
     request_data = request.get_json()
     image = request_data.get("image")
-    docker.run(image)
-    status = docker.get_image_tag_status(image)
+    ports = request_data.get("ports")
+    volumes = reuest_data.get("volumes")
+    container = docker.run(image, ports=ports, volumes=volumes)
+    if not container:
+        return {"get container error"}, 500
+    status = container.status 
+    short_id = container.short_id
 
-    return {"status": status}, 201
+    return {"status": status, "short_id": short_id}, 201
 
 def instance_get(instance_id):
     return {}, 200
