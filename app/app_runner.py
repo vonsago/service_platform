@@ -16,11 +16,14 @@ from app.utils.local import thread_local
 
 LOG = logging.getLogger(__name__)
 
+
 def configure_models():
     pass
 
 def configure_buleprints(flask_app):
-    pass
+    from app.instance.instance_api import instance_management
+
+    flask_app.register_blueprint(instance_management)
 
 def add_app_hook(app):
     @app.errorhandler(APIException)
@@ -55,5 +58,20 @@ def add_app_hook(app):
         app.errorhandler(code)(http_error_handler)
 
 def create_app():
-    pass
+    import app.utils.logger
+    
+    flask_app = Flask('psp-controller', template_folder=config.get_static_file_full_path('templates'))
+    
+    with flask_app.app_context():
+        configure_blueprints(flask_app)
 
+    add_app_hook(flask_app)
+    return flask_app
+
+
+if __name__ == "__main__":
+    app = create_app()
+    try:
+        app.run('0.0.0.0', 8000, debug=app.config["DEBUG"], threaded=True)
+    except Exception as e:
+        LOG.info("Program exit unexpectly because an error {}".format(e))

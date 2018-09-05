@@ -8,12 +8,10 @@
 '''
 import os
 
-
 def str2bool(v):
     if v is None or isinstance(v, bool):
         return v
     return v.lower() in ("yes", "true", "t", "1")
-
 
 def str2int(v):
     if v is None:
@@ -21,7 +19,6 @@ def str2int(v):
     if v is '':
         return None
     return int(v)
-
 
 def str2float(v):
     if v is None:
@@ -34,7 +31,6 @@ MAIN_DIRECTORY = os.path.dirname(os.path.dirname(__file__))
 
 def get_full_path(*path):
     return os.path.abspath(os.path.join(MAIN_DIRECTORY, *path))
-
 
 class Base():
     CONFIG_NAME = 'BASE'

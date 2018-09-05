@@ -13,7 +13,6 @@ import logging
 import os
 
 LOG = logging.getLogger(__name__)
-# noinspection PyUnresolvedReferences
 from .base_config import str2bool
 
 
@@ -23,16 +22,6 @@ class Config():
         self.get_config()
 
     def get_config(self, config_name=os.getenv("CONFIG_NAME", "DEFAULT")):
-        if config_name == 'PROD':
-            from .pro_config import ProdConfig
-            self.config = ProdConfig()
-        elif config_name == 'UNIT_TEST' or config_name == 'TEST':
-            from .unit_test_config import UnitTestConfig
-            self.config = UnitTestConfig()
-        else:
-            from .dev_config import DevConfig
-            self.config = DevConfig()
-
         LOG.info("config use: %s", config_name)
         return self
 
