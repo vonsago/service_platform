@@ -42,7 +42,8 @@ def add_app_hook(app):
         user_name = getattr(getattr(g, 'user', 'no login'), 'name', 'no login')
         LOG.exception(
             f"http_error_handler: InternalServerError user: {user_name} method: {request.method} Url: {request.url}, Body: {request.get_data()}")
-        db.session.remove()
+        #TODO need db ?
+        #db.session.remove()
         if isinstance(exception, APIException):
             response = exception.get_respose()
         elif isinstance(exception, HTTPException):

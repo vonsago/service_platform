@@ -16,7 +16,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database
 from app.config.common import config
 from app.models.base import Base
-from app.storage.db import SQLAlchemy
+from app.storage.dbAlchemy import SQLAlchemy
 
 LOG = logging.getLogger(__name__)
 

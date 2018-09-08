@@ -11,7 +11,6 @@ import logging
 
 from sqlalchemy import create_engine, orm
 
-from app.metrics.monitor import ScopedSessionTracer
 from app.models.base import Base
 
 LOG = logging.getLogger(__name__)

@@ -7,6 +7,8 @@ name = "pypi"
 flask = "*"
 docker = "*"
 sqlalchemy = "*"
+alembic = "*"
+sqlalchemy-utils = "*"
 
 [dev-packages]
 
