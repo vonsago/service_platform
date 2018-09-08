@@ -36,5 +36,8 @@ class Config():
     def get_static_file_full_path(self, *path):
         return os.path.abspath(os.path.join(self.config.STATIC_DIR, *path))
 
+    def get_template_file_full_path(self, *path):
+        return os.path.abspath(os.path.join(self.config.TEMPLATE_DIR, *path))
+
 
 config = Config()

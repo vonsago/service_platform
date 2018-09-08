@@ -11,4 +11,5 @@ from app.config.base_config import Base, get_full_path, str2bool, str2int
 
 class DefaultConfig():
     CONFIG_NAME = 'DEFAULT'
-    STATIC_DIR = "../../templates"
+    TEMPLATE_DIR = "."
+    STATIC_DIR = "."

@@ -25,8 +25,10 @@ def configure_models():
 
 def configure_blueprints(flask_app):
     from app.instance.instance_api import instance_management
+    from app.dashboard.dashboard_api import dashboard_management
 
     flask_app.register_blueprint(instance_management)
+    flask_app.register_blueprint(dashboard_management)
 
 def add_app_hook(app):
     @app.errorhandler(APIException)
@@ -63,8 +65,9 @@ def add_app_hook(app):
 
 def create_app():
     import app.utils.logger
-    
-    flask_app = Flask('psp-controller', template_folder=config.get_static_file_full_path('templates'))
+
+    flask_app = Flask('psp-controller', template_folder=config.get_template_file_full_path('templates'),
+                      static_folder=config.get_static_file_full_path('static'))
     
     with flask_app.app_context():
         configure_blueprints(flask_app)

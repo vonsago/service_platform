@@ -1,0 +1,47 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="zh-CN">-->
+  <!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--&lt;!&ndash; 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ &ndash;&gt;-->
+    <!--<title>Bootstrap 101 Template</title>-->
+	<!--<link rel="stylesheet" href="css/bootstrap-theme.css" />-->
+	<!--<link rel="stylesheet" href="css/bootstrap-theme.min.css" />-->
+	<!--<link rel="stylesheet" href="css/bootstrap.css" />-->
+	<!--<link rel="stylesheet" href="css/bootstrap.min.css" />-->
+	<!--<script type="application/javascript" src="js/bootstrap.js"></script>-->
+	<!--<script type="application/javascript" src="js/bootstrap.min.js"></script>-->
+	<!--<script type="application/javascript" src="js/npm.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+  <!--</head>-->
+  <!--<body>-->
+
+	<!--<form style="text-align: center;" action="http://127.0.0.1:8000" method="post">-->
+	  <!--<fieldset>-->
+		<!--<legend>请输入参数</legend>-->
+		<!--<label>image</label> &nbsp;-->
+		<!--<input type="text" placeholder="image"><br/><br />-->
+		<!--<label>port</label> &nbsp;-->
+		<!--<input type="text" placeholder="port"><br /><br />-->
+		<!--<label>volumes</label> &nbsp;-->
+		<!--<input type="text" placeholder="volumes"><br /><br />-->
+		<!--<button type="submit" class="btn">提交</button>-->
+		<!--<button type="reset" class="btn">重置</button>-->
+	  <!--</fieldset>-->
+	<!--</form>-->
+  <!--</body>-->
+<!--</html>-->
+
+<!--# TODO --- modify by flask template -->
+<!doctype html>
+<title>Hello World~</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+ <h1>Hello World -- by Vassago</h1>
+
+ {% for message in get_flashed_messages() %}
+   <div class=flash>{{ message }}</div>
+  {% endfor %}
+ {% block body %}{% endblock %}
+</div>

@@ -4,3 +4,9 @@
 # @Author  : Vassago
 # @File    : dashboard.py
 # @Software: PyCharm
+
+from flask import render_template
+
+
+def show_dashboard():
+    return render_template("index.html")
