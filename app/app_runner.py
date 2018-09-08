@@ -13,6 +13,7 @@ from flask import Flask, g, request
 from werkzeug.exceptions import HTTPException, InternalServerError
 from werkzeug.wrappers import Response
 from app.utils.local import thread_local
+from app.storage.database import create_db, db
 from app.config.common import config
 from app.utils.api_exception import APIException, HttpApiException
 

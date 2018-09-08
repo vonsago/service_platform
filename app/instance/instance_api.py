@@ -15,11 +15,11 @@ instance_management = Blueprint("instance_management", __name__)
 instance_management.add_url_rule(
         rule="/v1/instance/<instance_id>",
         view_func=instance_create,
-        method=["POST"]
+        methods=["POST"]
         )
 
 instance_management.add_url_rule(
         rule="/v1/instance/<instance_id>",
         view_func=instance_get,
-        method=["GET"]
+        methods=["GET"]
         )
