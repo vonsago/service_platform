@@ -13,6 +13,8 @@ from flask import Flask, g, request
 from werkzeug.exceptions import HTTPException, InternalServerError
 from werkzeug.wrappers import Response
 from app.utils.local import thread_local
+from app.config.common import config
+from app.utils.api_exception import APIException, HttpApiException
 
 LOG = logging.getLogger(__name__)
 
@@ -20,7 +22,7 @@ LOG = logging.getLogger(__name__)
 def configure_models():
     pass
 
-def configure_buleprints(flask_app):
+def configure_blueprints(flask_app):
     from app.instance.instance_api import instance_management
 
     flask_app.register_blueprint(instance_management)

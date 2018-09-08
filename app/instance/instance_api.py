@@ -8,7 +8,7 @@
 '''
 
 from flask import Blueprint
-from .instance import instance_create
+from .instance import instance_create, instance_get
 
 instance_management = Blueprint("instance_management", __name__)
 

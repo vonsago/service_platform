@@ -8,7 +8,7 @@
 '''
 
 from flask import g, request
-from app.docker import docker_client as docker
+from app.docker.docker_ops import docker_client as docker
 
 def update_instance_status(image_tag):
     docker.exsit_container(image_tag)

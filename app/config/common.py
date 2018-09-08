@@ -23,6 +23,8 @@ class Config():
 
     def get_config(self, config_name=os.getenv("CONFIG_NAME", "DEFAULT")):
         LOG.info("config use: %s", config_name)
+        from .default_config import DefaultConfig
+        self.config = DefaultConfig()
         return self
 
     def __getattr__(self, item):
