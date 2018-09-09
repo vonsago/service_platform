@@ -10,6 +10,7 @@ sqlalchemy = "*"
 alembic = "*"
 sqlalchemy-utils = "*"
 
+
 [dev-packages]
 
 [requires]
