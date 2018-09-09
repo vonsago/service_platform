@@ -20,7 +20,7 @@ class DockerClient():
 
     def pull_images(self, images):
         images = [self.client.images.pull(im) for im in images]
-        LOG.info(f"pull images: {images} succeed")
+        LOG.info("pull images: {} succeed".format(images))
         return images
 
     def list_containers(self):
@@ -32,14 +32,14 @@ class DockerClient():
     def exsit_image(self, image_tag):
         for image in self.list_images():
             if image_tag in image.tags:
-                LOG.info(f"image: {image_tag} is already pulled")
+                LOG.info("image: {} is already pulled".format(image_tag))
                 return True
         return False
 
     def exsit_container(self, image_tag):
         for container in self.list_containers():
             if image_tag in container.image.tags:
-                LOG.info(f"container: {image_tag} is already running")
+                LOG.info("container: {} is already running".format(image_tag))
                 return True
         return False
 
@@ -62,7 +62,7 @@ class DockerClient():
         if backend:
             container = self.client.containers.run(image_tag, ports=ports,
                     volumes=volumes, detach=True)
-            LOG.info(f"container: {image_tag} running in backend")
+            LOG.info("container: {} running in backend".format(image_tag))
             return container
 
     def stop(self, image_tag, stop_all = False):
@@ -72,7 +72,7 @@ class DockerClient():
                 LOG.info("stop all of containers")
             elif image_tag in container.image.tags:
                 container.stop()
-                LOG.info(f"stop {image_tag} success")
+                LOG.info("stop {image_tag} success".format(image_tag))
 
 docker_client = DockerClient()
 

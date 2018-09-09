@@ -42,6 +42,6 @@ class Base():
     TZ = os.getenv('TZ', "Asia/Shanghai")
 
     DATABASE_MYSQL_URL = os.getenv("DATABASE_MYSQL_URL", "root:root@localhost:3306/psp")
-    DATABASE_URL = os.getenv("DATABASE_URL", f"mysql+pymysql://{DATABASE_MYSQL_URL}?charset=utf8mb4")
+    DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://{}?charset=utf8mb4".format(DATABASE_MYSQL_URL))
     DATABASE_URL_ENCODING = os.getenv('DATABASE_URL_ENCODING', "utf8mb4")
 
