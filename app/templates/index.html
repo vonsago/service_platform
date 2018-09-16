@@ -38,11 +38,11 @@
     <div class="jumbotron">
       <h1>Hello Master</h1>
 
-      <p> fuck you <a href="http://pythonhosted.org/Flask-Bootstrap">doc </a>.</p>
+      <p> fuck you <a href="{{ url_for('instance_management.create_instance') }}">doc </a>.</p>
 
       <p>
         <a class="btn btn-lg btn-default" role="button"
-           href="http://pythonhosted.org/Flask-Bootstrap" >Show docs</a>
+           href="{{ url_for('instance_management.create_instance') }}" >Create Instance</a>
       </p>
     </div>
    </div>
