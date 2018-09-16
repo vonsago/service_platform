@@ -16,6 +16,7 @@ from app.utils.local import thread_local
 from app.storage.database import create_db, db
 from app.config.common import config
 from app.utils.api_exception import APIException, HttpApiException
+from flask.ext.bootstrap import Bootstrap
 
 LOG = logging.getLogger(__name__)
 
@@ -71,7 +72,7 @@ def create_app():
     
     with flask_app.app_context():
         configure_blueprints(flask_app)
-
+    bootstrap = Bootstrap(app)
     add_app_hook(flask_app)
     return flask_app
 
