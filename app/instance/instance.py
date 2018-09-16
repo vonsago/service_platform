@@ -18,7 +18,7 @@ def instance_create(instance_id):
     request_data = request.get_json()
     image = request_data.get("image")
     ports = request_data.get("ports")
-    volumes = reuest_data.get("volumes")
+    volumes = request_data.get("volumes")
     container = docker.run(image, ports=ports, volumes=volumes)
     if not container:
         return {"get container error"}, 500

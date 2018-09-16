@@ -10,6 +10,7 @@ sqlalchemy = "*"
 alembic = "*"
 sqlalchemy-utils = "*"
 flask-bootstrap = "*"
+flask-caching = "*"
 
 [dev-packages]
 
