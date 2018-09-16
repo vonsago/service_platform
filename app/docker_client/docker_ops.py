@@ -6,6 +6,7 @@
 > Mail: f811194414@gmail.com
 > Created Time: 二  8/28 10:08:15 2018
 '''
+from __future__ import absolute_import
 import docker
 import logging
 
@@ -15,8 +16,9 @@ class DockerClient():
     def __init__(self):
         try:
             self.client = docker.from_env()
+            LOG.info("docker service is available: {}".format(self.client.version()))
         except Exception as e:
-            LOG.info("docker service is not available")
+            LOG.info("docker service is not available: {}".format(e))
 
     def pull_images(self, images):
         images = [self.client.images.pull(im) for im in images]

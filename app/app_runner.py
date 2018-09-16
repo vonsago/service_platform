@@ -79,6 +79,6 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     try:
-        app.run('0.0.0.0', 8000, debug=app.config["DEBUG"], threaded=True)
+        app.run('0.0.0.0', 5000, debug=app.config["DEBUG"], threaded=True)
     except Exception as e:
         LOG.info("Program exit unexpectly because an error {}".format(e))

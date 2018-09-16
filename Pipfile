@@ -9,6 +9,7 @@ docker = "*"
 sqlalchemy = "*"
 alembic = "*"
 sqlalchemy-utils = "*"
+flask-bootstrap = "*"
 
 [dev-packages]
 
