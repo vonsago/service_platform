@@ -1,19 +1,25 @@
-<!--# TODO --- modify by flask template -->
-<!doctype html>
-<title>Hello World~</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<div class=page>
- <h1>Hello World -- by Vassago</h1>
+{%- extends "base.html" %}
 
- {% for message in get_flashed_messages() %}
-   <div class=flash>{{ message }}</div>
-  {% endfor %}
- {% block body %}{% endblock %}
-        <form action="/index/" method="post">
-        <p>image:&nbsp&nbsp&nbsp<input type="" name="image" value="image" style="color:grey;" onfocus="javascript:if(this.value=='image')this.value='';"></p>
-        <p>port:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="" name="port" value="port" style="color:grey;" onfocus="javascript:if(this.value=='port')this.value='';"></p>
-        <p>volumes<input type="" name="volumes" value="volumes" style="color:grey;" onfocus="javascript:if(this.value=='volumes')this.value='';"></p>
-        <p><button type="submit">提交</button><input type="reset" name="reset" value="重置" style="margin-left: 50px"></p>
-    </form>
-</div>
+{% import "bootstrap/utils.html" as utils %}
 
+{% block content %}
+  <div class="container">
+  {%- with messages = get_flashed_messages(with_categories=True) %}
+  {%- if messages %}
+    <div class="row">
+      <div class="col-md-12">
+        {{utils.flashed_messages(messages)}}
+      </div>
+    </div>
+  {%- endif %}
+  {%- endwith %}
+    <div class="jumbotron">
+      <h1>Hello Master</h1>
+      <p> fuck you <a href="http://pythonhosted.org/Flask-Bootstrap">doc </a>.</p>
+      <p>
+        <a class="btn btn-lg btn-default" role="button"
+           href="http://pythonhosted.org/Flask-Bootstrap" >Show docs</a>
+      </p>
+    </div>
+   </div>
+{%- endblock %}
