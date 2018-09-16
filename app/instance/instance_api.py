@@ -13,7 +13,7 @@ from .instance import instance_create, instance_get
 instance_management = Blueprint("instance_management", __name__)
 
 instance_management.add_url_rule(
-        rule="/v1/instance/<instance_id>",
+        rule="/v1/instance",
         view_func=instance_create,
         methods=["POST"]
         )

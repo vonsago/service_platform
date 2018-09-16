@@ -7,8 +7,9 @@
 > Created Time: 三  8/29 19:52:52 2018
 '''
 
-from flask import g, request
+from flask import g, request, flash
 from app.docker_client.docker_ops import docker_client as docker
+from .forms import CreateInstanceForm
 
 def update_instance_status(image_tag):
     docker.exsit_container(image_tag)
@@ -20,12 +21,19 @@ def instance_create(instance_id):
     ports = request_data.get("ports")
     volumes = request_data.get("volumes")
     container = docker.run(image, ports=ports, volumes=volumes)
-    if not container:
-        return {"get container error"}, 500
-    status = container.status 
-    short_id = container.short_id
 
-    return {"status": status, "short_id": short_id}, 201
+    form = SignupForm()
+    if form.validate_on_submit():
+        # We don't have anything fancy in our application, so we are just
+        # flashing a message when a user completes the form successfully.
+        #
+        # Note that the default flashed messages rendering allows HTML, so
+        # we need to escape things if we input user values:
+        flash('Hello, {}. You have successfully signed up'
+              .format(escape(form.name.data)))
+
+        # In a real application, you may wish to avoid this tedious redirect.
+        return redirect(url_for('.index'))
 
 def instance_get(instance_id):
     return {}, 200

@@ -11,6 +11,7 @@ alembic = "*"
 sqlalchemy-utils = "*"
 flask-bootstrap = "*"
 flask-caching = "*"
+flask-wtf = "*"
 
 [dev-packages]
 
