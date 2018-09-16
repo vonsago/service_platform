@@ -37,6 +37,10 @@ class Base():
     MAIN_DIRECTORY = MAIN_DIRECTORY
     PROD = str2bool(os.getenv('PROD', "True"))
     SERVICE_NAME = os.getenv('SERVICE_NAME', "csp_controller")
+
+    SECRET_KEY = "powerful secretkey fff",
+    WTF_CSRF_SECRET_KEY = "a csrf secret key"
+
     # ALL,WORKER,CONTROLLER
     RUN_MODEL = os.getenv('RUN_MODEL', "CONTROLLER")
     TZ = os.getenv('TZ', "Asia/Shanghai")
@@ -44,4 +48,3 @@ class Base():
     DATABASE_MYSQL_URL = os.getenv("DATABASE_MYSQL_URL", "root:root@localhost:3306/psp")
     DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://{}?charset=utf8mb4".format(DATABASE_MYSQL_URL))
     DATABASE_URL_ENCODING = os.getenv('DATABASE_URL_ENCODING', "utf8mb4")
-

@@ -12,11 +12,15 @@ from uuid import uuid4
 from flask import Flask, g, request
 from werkzeug.exceptions import HTTPException, InternalServerError
 from werkzeug.wrappers import Response
+
+from flask_bootstrap import Bootstrap
+from flask_wtf.csrf import CSRFProtect
+
 from app.utils.local import thread_local
 from app.storage.database import create_db, db
 from app.config.common import config
 from app.utils.api_exception import APIException, HttpApiException
-from flask_bootstrap import Bootstrap
+
 
 LOG = logging.getLogger(__name__)
 
@@ -67,8 +71,14 @@ def add_app_hook(app):
 def create_app():
     import app.utils.logger
 
-    flask_app = Flask('psp-controller')#, template_folder=config.get_template_file_full_path('templates'),
-                      #static_folder=config.get_static_file_full_path('static'))
+    flask_app = Flask('psp-controller', template_folder=config.get_template_file_full_path('templates'),
+                      static_folder=config.get_static_file_full_path('static'))
+    flask_app.config.update(dict(
+        SECRET_KEY="powerful secretkey",
+        WTF_CSRF_SECRET_KEY="a csrf secret key"
+    ))
+    csrf = CSRFProtect(flask_app)
+    csrf.init_app(flask_app)
     Bootstrap(flask_app)
     with flask_app.app_context():
         configure_blueprints(flask_app)
