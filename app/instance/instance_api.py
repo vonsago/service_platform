@@ -14,8 +14,9 @@ instance_management = Blueprint("instance_management", __name__)
 
 instance_management.add_url_rule(
         rule="/v1/instance",
+        endpoint="create_instance",
         view_func=instance_create,
-        methods=["POST"]
+        methods=["POST", "GET"]
         )
 
 instance_management.add_url_rule(

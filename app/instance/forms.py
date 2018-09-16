@@ -11,9 +11,9 @@ from wtforms.fields import *
 from wtforms.validators import DataRequired #, Email
 
 class CreateInstanceForm(Form):
-    image = StringField(u'Your name', validators=[DataRequired()])
-    port = StringField(u'Your favorite password', validators=[DataRequired()])
-    volumes = StringField(u'Your email address', validators=[DataRequired()])
+    image = StringField(u'Your image <name:tag>', validators=[DataRequired()])
+    port = StringField(u'Your image port', validators=[DataRequired()])
+    volumes = StringField(u'Your image volumes', validators=[DataRequired()])
     # birthday = DateField(u'Your birthday')
     #
     # a_float = FloatField(u'A floating point number')
