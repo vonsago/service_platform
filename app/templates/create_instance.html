@@ -1,6 +1,6 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
-{%- extends "base.html" %}
+{% extends "base.html" %}
 
 
 {% block content %}
@@ -10,11 +10,17 @@
         <p>Note: Your data isn't going anywhere.</p>
       </div>
    <div class="col-md-12">
-     {% if request.args.get('legacy') -%}
-       {{wtf.quick_form(form, novalidate=True)}}
-     {%- else -%}
-       {{form|render_form()}}
-     {%- endif %}
+{#       <form method="POST" action="/v1/instance">#}
+{#        {{ form.csrf_token }}#}
+{#        {{ form.image.label }}#}
+{#        {{ form.image }}#}
+{#        {{ form.port.label }}#}
+{#        {{ form.port }}#}
+{#        {{ form.volumes.label }}#}
+{#        {{ form.volumes }}#}
+{#        {{ form.submit }}#}
+{#       </form>#}
+       {{wtf.quick_form(form, button_map={'submit': 'primary'}, action="/v1/instance")}}
    </div>
-   </div>>
-{%- endblock %}
+   </div>
+{% endblock %}

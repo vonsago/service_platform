@@ -12,6 +12,7 @@ dashboard_management = Blueprint("dashboard", __name__)
 
 dashboard_management.add_url_rule(
         rule="/",
+        endpoint="dashboard",
         view_func=show_dashboard,
         methods=["GET"]
         )

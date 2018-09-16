@@ -16,7 +16,7 @@ instance_management.add_url_rule(
         rule="/v1/instance",
         endpoint="create_instance",
         view_func=instance_create,
-        methods=["POST", "GET"]
+        methods=["GET", "POST"]
         )
 
 instance_management.add_url_rule(

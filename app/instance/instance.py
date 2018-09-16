@@ -22,19 +22,16 @@ def instance_create():
     # ports = request_data.get("ports")
     # volumes = request_data.get("volumes")
     # container = docker.run(image, ports=ports, volumes=volumes)
-
     form = CreateInstanceForm()
-    if form.validate_on_submit():
-        # We don't have anything fancy in our application, so we are just
-        # flashing a message when a user completes the form successfully.
-        #
-        # Note that the default flashed messages rendering allows HTML, so
-        # we need to escape things if we input user values:
-        flash('Hello, {}. You have successfully signed up'
-              .format(escape(form.name.data)))
+    s = form.validate_on_submit()
+    if request.method == 'POST' and form.validate_on_submit():
+        
+        #docker.run()
 
-        # In a real application, you may wish to avoid this tedious redirect.
-        return redirect(url_for('.index'))
+        flash('You have successfully create {}'
+              .format(escape(form.image.data)))
+
+        return redirect(url_for('dashboard.dashboard'))
     return render_template('create_instance.html', form=form)
 
 def instance_get(instance_id):

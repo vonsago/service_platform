@@ -26,4 +26,4 @@ class CreateInstanceForm(Form):
     # eula = BooleanField(u'I did not read the terms and conditions',
     #                     validators=[Required('You must agree to not agree!')])
     #
-    # submit = SubmitField(u'Signup')
+    submit = SubmitField(u'Create')
