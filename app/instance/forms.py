@@ -12,7 +12,7 @@ from wtforms.validators import DataRequired #, Email
 
 class CreateInstanceForm(Form):
     image = StringField(u'Your image <name:tag>', validators=[DataRequired()])
-    port = StringField(u'Your image port', validators=[DataRequired()])
+    port = IntegerField(u'Your image port', validators=[DataRequired()])
     volumes = StringField(u'Your image volumes', validators=[DataRequired()])
     # birthday = DateField(u'Your birthday')
     #

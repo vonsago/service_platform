@@ -17,16 +17,14 @@ def update_instance_status(image_tag):
 
 
 def instance_create():
-    # request_data = request.get_json()
-    # image = request_data.get("image")
-    # ports = request_data.get("ports")
-    # volumes = request_data.get("volumes")
-    # container = docker.run(image, ports=ports, volumes=volumes)
+    #ports = {"3306/tcp": 3306}
     form = CreateInstanceForm()
     s = form.validate_on_submit()
     if request.method == 'POST' and form.validate_on_submit():
-        
-        #docker.run()
+        image = form.data.get("image")
+        ports = {"3306/tcp": form.data.get("ports")}
+        volumes = form.data.get("volumes").split(",")
+        container = docker.run(image, ports=ports, volumes=volumes)
 
         flash('You have successfully create {}'
               .format(escape(form.image.data)))
