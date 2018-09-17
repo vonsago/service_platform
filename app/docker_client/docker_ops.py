@@ -50,11 +50,11 @@ class DockerClient():
 
     def get_container(self, image_tag):
         for container in self.list_containers():
-            if image_tag in container.tags:
+            if image_tag in container.image.tags:
                 return container
         return None
 
-    def run(self, image_tag, ports, volumes, backend=True):
+    def run(self, image_tag, ports, volumes, environment=["MYSQL_ROOT_PASSWORD=dangerous"],backend=True):
         if not self.exsit_image(image_tag):
             self.pull_images([image_tag])
 
@@ -63,8 +63,8 @@ class DockerClient():
 
         if backend:
             container = self.client.containers.run(image_tag, ports=ports,
-                    volumes=volumes, detach=True)
-            LOG.info("container: {} running in backend".format(image_tag))
+                    volumes=volumes, detach=True, environment=environment)
+            LOG.info("container: {} running in backend| detail:{},{}".format(image_tag,ports,volumes))
             return container
 
     def stop(self, image_tag, stop_all = False):
@@ -74,7 +74,7 @@ class DockerClient():
                 LOG.info("stop all of containers")
             elif image_tag in container.image.tags:
                 container.stop()
-                LOG.info("stop {image_tag} success".format(image_tag))
+                LOG.info("stop {} success".format(image_tag))
 
 docker_client = DockerClient()
 
