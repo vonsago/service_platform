@@ -22,9 +22,9 @@ def instance_create():
     s = form.validate_on_submit()
     if request.method == 'POST' and form.validate_on_submit():
         image = form.data.get("image")
-        ports = {"3306/tcp": form.data.get("ports")}
+        port = {"3306/tcp": form.data.get("port")}
         volumes = form.data.get("volumes").split(",")
-        container = docker.run(image, ports=ports, volumes=volumes)
+        container = docker.run(image, ports=port, volumes=volumes)
 
         flash('You have successfully create {}'
               .format(escape(form.image.data)))
