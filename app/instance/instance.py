@@ -13,7 +13,8 @@ from .forms import CreateInstanceForm
 from markupsafe import escape
 
 def update_instance_status(image_tag):
-    docker.exsit_container(image_tag)
+    with DockerClient() as docker:
+        docker.exsit_container(image_tag)
 
 
 def instance_create():

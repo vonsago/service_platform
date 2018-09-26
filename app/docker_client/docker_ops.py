@@ -88,7 +88,6 @@ class DockerClient():
                 container.stop()
                 LOG.info("stop {} success".format(image_tag))
 
-docker_client = DockerClient()
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
@@ -96,9 +95,9 @@ if __name__ == "__main__":
 
     with DockerClient() as docker:
         s = docker.run("mysql:5.7.19", ports={"3306/tcp": 3306},volumes=["mysqldata:/var/lib/mysql"])
-    print(s.short_id)
+        print(s.short_id)
 
     #print(docker_client.list_containers()[0].status)
 
-    docker_client.stop("mysql:5.7.19")
+        docker.stop("mysql:5.7.19")
 
