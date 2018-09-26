@@ -13,6 +13,5 @@ COPY . /usr/src/app
 
 #RUN pipenv run pyinstaller --upx-dir=/usr/src/app/contrib/deploy --onefile app.spec
 #CMD ["ui api adapter worker"]
-ENTRYPOINT ["csp.sh"]
 CMD ["python3", "app/app_runner.py"]
 

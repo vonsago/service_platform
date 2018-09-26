@@ -1,4 +1,4 @@
 psp:
-   image: daocloud.io/mysql:5.7.21
+   image: vonsago/common:1.0
    ports:
-    - "8000:5000"
+    - "8005:5000"
