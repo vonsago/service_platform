@@ -14,11 +14,23 @@ LOG = logging.getLogger(__name__)
 
 class DockerClient():
     def __init__(self):
+        self.client = None
+
+    def __enter__(self):
+        if self.client:
+            LOG.info("docker service is already exesit!")
+            return self.client
         try:
             self.client = docker.from_env()
             LOG.info("docker service is available: {}".format(self.client.version()))
+            return self.client
         except Exception as e:
             LOG.info("docker service is not available: {}".format(e))
+    
+    def __exit__(self, exc_ty, exc_val, tb):
+        if self.client:
+            self.client.close()
+        self.client = None
 
     def pull_images(self, images):
         images = [self.client.images.pull(im) for im in images]
