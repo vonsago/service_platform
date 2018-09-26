@@ -19,11 +19,11 @@ class DockerClient():
     def __enter__(self):
         if self.client:
             LOG.info("docker service is already exesit!")
-            return self.client
+            return self
         try:
             self.client = docker.from_env()
             LOG.info("docker service is available: {}".format(self.client.version()))
-            return self.client
+            return self
         except Exception as e:
             LOG.info("docker service is not available: {}".format(e))
     
@@ -94,7 +94,8 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 
-    s = docker_client.run("mysql:5.7.19", ports={"3306/tcp": 3306},volumes=["mysqldata:/var/lib/mysql"])
+    with DockerClient() as docker:
+        s = docker.run("mysql:5.7.19", ports={"3306/tcp": 3306},volumes=["mysqldata:/var/lib/mysql"])
     print(s.short_id)
 
     #print(docker_client.list_containers()[0].status)
