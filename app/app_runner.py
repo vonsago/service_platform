@@ -71,8 +71,10 @@ def add_app_hook(app):
 def create_app():
     import app.utils.logger
 
-    flask_app = Flask('psp-controller', template_folder=config.get_template_file_full_path('templates'),
-                      static_folder=config.get_static_file_full_path('static'))
+    flask_app = Flask('psp-controller')
+    #todo fix
+    #, template_folder=config.get_template_file_full_path('templates'),
+    #                 static_folder=config.get_static_file_full_path('static')
     flask_app.config.update(dict(
         SECRET_KEY="powerful secretkey",
         WTF_CSRF_SECRET_KEY="a csrf secret key"
