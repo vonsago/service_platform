@@ -8,7 +8,7 @@
 '''
 
 from flask import g, request, flash, render_template, redirect, url_for
-from app.docker_client.docker_ops import docker_client as docker
+from app.docker_client.docker_ops import docker_client as Docker
 from .forms import CreateInstanceForm
 from markupsafe import escape
 
@@ -24,7 +24,8 @@ def instance_create():
         image = form.data.get("image")
         port = {"3306/tcp": form.data.get("port")}
         volumes = form.data.get("volumes").split(",")
-        container = docker.run(image, ports=port, volumes=volumes)
+        with Docker as docker:
+            container = docker.run(image, ports=port, volumes=volumes)
 
         flash('You have successfully create {}'
               .format(escape(form.image.data)))
