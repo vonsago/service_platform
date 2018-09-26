@@ -1,0 +1,4 @@
+psp:
+   image: daocloud.io/mysql:5.7.21
+   ports:
+    - "8000:5000"
