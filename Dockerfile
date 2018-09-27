@@ -11,6 +11,7 @@ RUN pip install  -i https://mirrors.aliyun.com/pypi/simple --upgrade pip  pipenv
 
 COPY . /usr/src/app
 COPY app/templates /usr/src/app/templates
+COPY app/static /usr/src/app/static
 
 #RUN pipenv run pyinstaller --upx-dir=/usr/src/app/contrib/deploy --onefile app.spec
 #CMD ["ui api adapter worker"]
