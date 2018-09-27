@@ -3,4 +3,5 @@ psp:
    ports:
     - "8005:5000"
    volumes:
-    - ./var/run/docker.sock:/var/run/docker.sock
+    - /usr/local/bin/docker:/usr/bin/docker
+    - /var/run/docker.sock:/var/run/docker.sock
