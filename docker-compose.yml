@@ -2,3 +2,5 @@ psp:
    image: vonsago/common:1.0
    ports:
     - "8005:5000"
+   volumes:
+    - ./var/run/docker.sock:/var/run/docker.sock
