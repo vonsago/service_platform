@@ -1,4 +1,6 @@
 # service_platform
+### 使用前
+    需要有docker环境支持
 ### 运行
     docker-compose up -d
 
