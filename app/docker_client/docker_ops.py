@@ -97,7 +97,8 @@ if __name__ == "__main__":
         s = docker.run("mysql:5.7.19", ports={"3306/tcp": 3306},volumes=["mysqldata:/var/lib/mysql"])
         print(s.short_id)
 
-    #print(docker_client.list_containers()[0].status)
+        #print(docker_client.list_containers()[0].status)
+        print(docker.list_containers())
 
         docker.stop("mysql:5.7.19")
 

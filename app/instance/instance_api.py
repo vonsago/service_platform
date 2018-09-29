@@ -8,7 +8,7 @@
 '''
 
 from flask import Blueprint
-from .instance import instance_create, instance_get
+from .instance import instance_create, list_instances
 
 instance_management = Blueprint("instance_management", __name__)
 
@@ -21,6 +21,7 @@ instance_management.add_url_rule(
 
 instance_management.add_url_rule(
         rule="/v1/instance/<instance_id>",
-        view_func=instance_get,
+        endpoint="list_instances",
+        view_func=list_instances,
         methods=["GET"]
         )

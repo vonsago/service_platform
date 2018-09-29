@@ -34,5 +34,6 @@ def instance_create():
         return redirect(url_for('dashboard.dashboard'))
     return render_template('create_instance.html', form=form)
 
-def instance_get(instance_id):
-    return {}, 200
+def list_instances():
+
+    pass
