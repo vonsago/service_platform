@@ -12,6 +12,7 @@ sqlalchemy-utils = "*"
 flask-bootstrap = "*"
 flask-caching = "*"
 flask-wtf = "*"
+marshmallow = "*"
 
 [dev-packages]
 

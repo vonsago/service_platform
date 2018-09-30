@@ -10,6 +10,7 @@
 from flask import g, request, flash, render_template, redirect, url_for
 from app.docker_client.docker_ops import DockerClient
 from .forms import CreateInstanceForm
+from .schema import InstanceSchema
 from markupsafe import escape
 
 def update_instance_status(image_tag):
@@ -35,5 +36,10 @@ def instance_create():
     return render_template('create_instance.html', form=form)
 
 def list_instances():
-
-    pass
+    comments = []
+    with DockerClient() as docker:
+        containers = docker.list_containers()
+        for container in containers:
+            instance = InstanceSchema().load({"name":container.image.tags[0], "short_id":container.short_id ,"status":container.status, "created":container.attrs.get("Created")})
+            comments.append(instance.data)
+    return render_template("list_instances.html", comments=comments)

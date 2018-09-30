@@ -1,14 +1,20 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 
 {% block content %}
    <div class="container">
       <div class="jumbotron">
-        <h2>Instances View</h2>
+        <h1>Instances View</h1>
           <p></p>
       </div>
-   <div class="col-md-12">
-       <ui></ui>
+     <div class="row">
+         <div class="col-md-2">容器名</div>
+         <div class="col-md-2">ID</div>
+         <div class="col-md-2">状态</div>
+         <div class="col-md-2">创建时间</div>
+         <div class="col-md-6">停止</div>
+    </div>
+
    </div>
-   </div>
+
 {% endblock %}

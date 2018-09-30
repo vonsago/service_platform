@@ -18,7 +18,7 @@
              <div class="navbar-collapse collapse">
                  <ul class="nav navbar-nav">
                      <li><a href="/">Home</a></li>
-                     <li><a class="btn btn-lg btn-default" role="button" href="{{ url_for('instance_management.create_instance') }}" >Create Instance</a></li>
+                     <li><a href="{{ url_for('instance_management.create_instance') }}" >Create Instance</a></li>
                  </ul>
              </div>
          </div>
@@ -43,7 +43,7 @@
 
       <p>
         <a class="btn btn-lg btn-default" role="button"
-           href="{{ url_for('instance_management.create_instance') }}" >Create Instance</a>
+           href="{{ url_for('instance_management.list_instances') }}" >List Instance</a>
       </p>
     </div>
    </div>
