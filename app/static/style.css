@@ -1,8 +1,20 @@
-body            { font-family: sans-serif; background: #eee; }
+body{
+    font-family: sans-serif;
+    background: #eee;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
 a, h1, h2       { color: #377BA8; }
 h1, h2          { font-family: 'Georgia', serif; margin: 0; }
 h1              { border-bottom: 2px solid #eee; }
 h2              { font-size: 1.2em; }
+h3 {
+  margin-top: 2rem;
+}
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
 .page           { margin: 2em auto;height: 700px;  border: 5px solid #ccc;
                   padding: 0.8em; background: white; }
@@ -20,3 +32,18 @@ h2              { font-size: 1.2em; }
 .jumbotron {
   margin-top: 1em;  // add a little space
 }
+
+
+.row {
+    margin-bottom: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+[class*="col-"] {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(86, 61, 124, .15);
+  border: 1px solid rgba(86, 61, 124, .2);
+}
+
