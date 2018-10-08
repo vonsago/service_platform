@@ -35,6 +35,7 @@ def instance_create():
         return redirect(url_for('dashboard.dashboard'))
     return render_template('create_instance.html', form=form)
 
+
 def list_instances():
     comments = []
     with DockerClient() as docker:
@@ -43,3 +44,9 @@ def list_instances():
             instance = InstanceSchema().load({"name":container.image.tags[0], "short_id":container.short_id ,"status":container.status, "created":container.attrs.get("Created")})
             comments.append(instance.data)
     return render_template("list_instances.html", comments=comments)
+
+
+def stop_instance(instance_id):
+    with DockerClient() as docker:
+        docker.stop(instance_id)
+    return  redirect(url_for('list_instances'))

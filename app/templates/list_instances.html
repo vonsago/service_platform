@@ -19,7 +19,7 @@
              <div class="col-md-2">{{ comment.short_id }}</div>
              <div class="col-md-2">{{ comment.status }}</div>
              <div class="col-md-2">{{ comment.created }}</div>
-             <div class="col-md-4"><button type="button" class="btn btn-danger">Danger</button></div>
+             <div class="col-md-4"><button type="button" class="btn btn-danger" href="{{ url_for('v1/stop_instance',instance_id=comment.short_id) }}>Delete</button></div>
 
          {% endfor %}
     </div>

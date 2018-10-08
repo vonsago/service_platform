@@ -1,9 +1,3 @@
-body{
-    font-family: sans-serif;
-    background: #eee;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
 a, h1, h2       { color: #377BA8; }
 h1, h2          { font-family: 'Georgia', serif; margin: 0; }
 h1              { border-bottom: 2px solid #eee; }
@@ -29,10 +23,6 @@ hr {
                   border: 1px solid #AACBE2; }
 .error          { background: #F0D6D6; padding: 0.5em; }
 
-.jumbotron {
-  margin-top: 1em;  // add a little space
-}
-
 
 .row {
     margin-bottom: 1rem;
@@ -41,10 +31,10 @@ hr {
 }
 
 [class*="col-"] {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: rgba(86, 61, 124, .15);
-    border: 1px solid rgba(86, 61, 124, .2);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(86, 61, 124, .15);
+  border: 1px solid rgba(86, 61, 124, .2);
     height: 70px;
 }
 

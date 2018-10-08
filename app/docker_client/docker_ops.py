@@ -79,14 +79,14 @@ class DockerClient():
             LOG.info("container: {} running in backend| detail:{},{}".format(image_tag,ports,volumes))
             return container
 
-    def stop(self, image_tag, stop_all = False):
+    def stop(self, image_meta, stop_all = False):
         for container in self.list_containers():
             if stop_all:
                 container.stop()
-                LOG.info("stop all of containers")
-            elif image_tag in container.image.tags:
+                LOG.info("stop one of all container")
+            elif image_meta in container.image.tags or image_meta == container.short_id:
                 container.stop()
-                LOG.info("stop {} success".format(image_tag))
+                LOG.info("stop {} success".format(image_meta))
 
 
 if __name__ == "__main__":
