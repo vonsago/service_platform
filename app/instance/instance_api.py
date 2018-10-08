@@ -30,5 +30,5 @@ instance_management.add_url_rule(
         rule="/v1/stop_instance/<instance_id>",
         endpoint="stop_instance",
         view_func=stop_instance,
-        methods=["POST"]
+        methods=["DELETE", "POST", "PUT"]
         )

@@ -48,5 +48,6 @@ def list_instances():
 
 def stop_instance(instance_id):
     with DockerClient() as docker:
+        print("-",instance_id)
         docker.stop(instance_id)
-    return  redirect(url_for('list_instances'))
+    return  redirect(url_for('instance_management.list_instances'))
