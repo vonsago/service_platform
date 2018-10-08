@@ -12,7 +12,18 @@
          <div class="col-md-2">状态</div>
          <div class="col-md-2">创建时间</div>
          <div class="col-md-4">操作</div>
+
+         {% for comment in comments %}
+             <div class="w-100"></div>
+             <div class="col-md-2">{{ comment.name }}</div>
+             <div class="col-md-2">{{ comment.short_id }}</div>
+             <div class="col-md-2">{{ comment.status }}</div>
+             <div class="col-md-2">{{ comment.created }}</div>
+             <div class="col-md-4"><button type="button" class="btn btn-danger">Danger</button></div>
+
+         {% endfor %}
     </div>
+
 
    </div>
 
