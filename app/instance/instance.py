@@ -45,6 +45,7 @@ def list_instances():
                     {"name":container.image.tags[0], "short_id":container.short_id ,"status":container.status,
                      "created":container.attrs.get("Created")})
             except:
+                #todo fix
                 instance = InstanceSchema().load(
                     {"name": 'xxx', "short_id": container.short_id, "status": "xxx",
                      "created": "xxx"})
