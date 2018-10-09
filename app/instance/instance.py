@@ -19,7 +19,6 @@ def update_instance_status(image_tag):
 
 
 def instance_create():
-    #ports = {"3306/tcp": 3306}
     form = CreateInstanceForm()
     s = form.validate_on_submit()
     if request.method == 'POST' and form.validate_on_submit():

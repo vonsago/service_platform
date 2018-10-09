@@ -26,15 +26,13 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-  {%- with messages = get_flashed_messages(with_categories=True) %}
-  {%- if messages %}
-      <div class="alert alert-secondary" role="alert">
-          {{utils.flashed_messages(messages)}}
-      </div>
-  {%- endif %}
-  {%- endwith %}
-
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+        <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+    </div>
+    {% endfor %}
     <div class="jumbotron">
       <h1>Hello Master</h1>
 

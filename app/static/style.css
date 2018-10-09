@@ -30,11 +30,16 @@ hr {
     padding: 0;
 }
 
-[class*="col-"] {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: rgba(86, 61, 124, .15);
-  border: 1px solid rgba(86, 61, 124, .2);
+[class*="col-md"] {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid rgba(86, 61, 124, .2);
     height: 70px;
 }
 
+.col-md-12 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 70px;
+}
