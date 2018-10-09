@@ -11,5 +11,5 @@ from app.docker_client.docker_ops import DockerClient
 def show_dashboard():
     with DockerClient() as docker:
         if not docker:
-            flash("Error: Docker Service Is Not Aviliable !")
+            flash("Error: Docker Service Is Not Available !")
     return render_template("index.html")

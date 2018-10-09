@@ -84,9 +84,12 @@ class DockerClient():
             if stop_all:
                 container.stop()
                 LOG.info("stop one of all container")
+                return True
             elif image_meta in container.image.tags or image_meta == container.short_id:
                 container.stop()
                 LOG.info("stop {} success".format(image_meta))
+                return True
+        return False
 
 
 if __name__ == "__main__":
