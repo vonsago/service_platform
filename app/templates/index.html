@@ -34,14 +34,20 @@
     </div>
     {% endfor %}
     <div class="jumbotron">
-      <h1>Hello Master</h1>
+        <h1>Hello Master</h1>
 
-      <p> test: <a href="{{ url_for('instance_management.create_instance') }}">test </a>.</p>
-
-      <p>
-        <a class="btn btn-lg btn-default" role="button"
+        <p> Document: <a href="https://github.com/vonsago/service_platform">Doc </a>.</p>
+        <p><a class="btn btn-lg btn-primary" role="button"
            href="{{ url_for('instance_management.list_instances') }}" >List Instance</a>
-      </p>
+        </p>
+
+        <p><a class="btn btn-lg btn-success" role="button"
+           href="{{ url_for('instance_management.create_instance') }}" >Create Instance</a>
+        </p>
+
+        <p><a class="btn btn-lg btn-danger" role="button"
+           href="{{ url_for('instance_management.list_instances') }}" >Stop All Instances</a>
+        </p>
     </div>
    </div>
 {%- endblock %}

@@ -22,7 +22,7 @@
 
              <form action="{{ url_for('instance_management.stop_instance',instance_id=comment.short_id) }}" method="post">
                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                 <input class="col-md-2 btn btn-outline-danger" type="submit" value="Stop" />
+                 <input class="col-lg-2 btn btn-danger" type="submit" value="Stop" />
              </form>
          {% endfor %}
     </div>
