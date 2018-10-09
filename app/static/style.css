@@ -30,7 +30,7 @@ hr {
     padding: 0;
 }
 
-[class*="col-md"] {
+[class*="col-md"]:not(.col-md-12) {
     padding-top: 1rem;
     padding-bottom: 1rem;
     background-color: rgba(86, 61, 124, .15);
