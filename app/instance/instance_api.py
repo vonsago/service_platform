@@ -8,7 +8,7 @@
 '''
 
 from flask import Blueprint
-from .instance import instance_create, list_instances, stop_instance
+from .instance import instance_create, list_instances, stop_instance, restart_instance
 
 instance_management = Blueprint("instance_management", __name__)
 
@@ -30,5 +30,12 @@ instance_management.add_url_rule(
         rule="/v1/stop_instance/<instance_id>",
         endpoint="stop_instance",
         view_func=stop_instance,
+        methods=["POST"]
+        )
+
+instance_management.add_url_rule(
+        rule="/v1/restart/<instance_id>",
+        endpoint="restart_instance",
+        view_func=restart_instance,
         methods=["POST"]
         )

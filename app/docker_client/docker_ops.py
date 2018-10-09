@@ -92,6 +92,12 @@ class DockerClient():
                 return True
         return False
 
+    def restart(self, short_id):
+        for container in self.list_containers():
+            if short_id == container.short_id:
+                container.restart()
+        return True
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,

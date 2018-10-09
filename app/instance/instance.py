@@ -55,3 +55,9 @@ def stop_instance(instance_id):
         else:
             flash(f"Stop Failed.")
     return  redirect(url_for('dashboard.dashboard'))
+
+def restart_instance(instance_id):
+    with DockerClient() as docker:
+        if docker.restart(instance_id):
+            flash(f"Restart Instance Success.")
+    return  redirect(url_for('dashboard.dashboard'))
