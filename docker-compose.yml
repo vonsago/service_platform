@@ -1,5 +1,5 @@
 psp:
-   image: vonsago/psp:1.0
+   image: vonsago/psp:1.1
    ports:
     - "8005:5000"
    volumes:
