@@ -47,6 +47,11 @@ def list_instances():
 
 def stop_instance(instance_id):
     with DockerClient() as docker:
-        if docker.stop(instance_id):
+        if instance_id == "Dangerous_All":
+            docker.stop("", stop_all=True)
+            flash(f"Stop All Instance Success.")
+        elif docker.stop(instance_id):
             flash(f"Stop {instance_id} Success.")
+        else:
+            flash(f"Stop Failed.")
     return  redirect(url_for('dashboard.dashboard'))

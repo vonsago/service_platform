@@ -45,9 +45,33 @@
            href="{{ url_for('instance_management.create_instance') }}" >Create Instance</a>
         </p>
 
-        <p><a class="btn btn-lg btn-danger" role="button"
-           href="{{ url_for('instance_management.list_instances') }}" >Stop All Instances</a>
+        <p><a class="btn btn-lg btn-danger" role="button" data-toggle="modal" data-target="#mymodal" >Exit PSP</a>
         </p>
     </div>
    </div>
+
+<!--弹窗 start -->
+<div class="modal" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a style="color: blueviolet">Exit Person Service Platform</a>
+            </div>
+
+            <div class="modal-body">
+                <a style="color: crimson">Will Stop All Instances!</a>
+            </div>
+
+            <div class="modal-footer">
+                <form action="{{ url_for('instance_management.stop_instance',instance_id='Dangerous_All') }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input class="col-sm-2 btn-sm btn-danger" type="submit" value="Stop" />
+                </form>
+                <p><a class="btn btn-sm btn-success" role="button"
+                     data-dismiss="modal">关闭</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 {%- endblock %}
