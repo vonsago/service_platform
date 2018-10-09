@@ -40,7 +40,15 @@ def list_instances():
     with DockerClient() as docker:
         containers = docker.list_containers()
         for container in containers:
-            instance = InstanceSchema().load({"name":container.image.tags[0], "short_id":container.short_id ,"status":container.status, "created":container.attrs.get("Created")})
+            try:
+                instance = InstanceSchema().load(
+                    {"name":container.image.tags[0], "short_id":container.short_id ,"status":container.status,
+                     "created":container.attrs.get("Created")})
+            except:
+                instance = InstanceSchema().load(
+                    {"name": 'xxx', "short_id": container.short_id, "status": "xxx",
+                     "created": "xxx"})
+
             comments.append(instance.data)
     return render_template("list_instances.html", comments=comments)
 
