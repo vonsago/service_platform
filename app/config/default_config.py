@@ -12,3 +12,9 @@ class DefaultConfig():
     DEBUG = True
     TEMPLATE_DIR = "."
     STATIC_DIR = "."
+
+class DevConfig():
+    CONFIG_NAME = 'PRO'
+    DEBUG = True
+    TEMPLATE_DIR = "./app"
+    STATIC_DIR = "./app"

@@ -10,8 +10,6 @@ COPY Pipfile.lock /usr/src/app/Pipfile.lock
 RUN pip install  -i https://mirrors.aliyun.com/pypi/simple --upgrade pip==18.0  pipenv ; pipenv install --pypi-mirror https://mirrors.aliyun.com/pypi/simple && python3_link=$(which python3) && rm $python3_link && ln -s $(pipenv --py) $python3_link
 
 COPY . /usr/src/app
-COPY app/templates /usr/src/app/templates
-COPY app/static /usr/src/app/static
 
 #RUN pipenv run pyinstaller --upx-dir=/usr/src/app/contrib/deploy --onefile app.spec
 #CMD ["ui api adapter worker"]
