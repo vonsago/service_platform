@@ -68,5 +68,5 @@ def stop_instance(instance_id):
 def restart_instance(instance_id):
     with DockerClient() as docker:
         if docker.restart(instance_id):
-            flash(f"Restart Instance Success.")
+            flash(f"Restart Instance {instance_id} Success.")
     return  redirect(url_for('dashboard.dashboard'))
