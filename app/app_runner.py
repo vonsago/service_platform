@@ -14,7 +14,7 @@ from werkzeug.exceptions import HTTPException, InternalServerError
 from werkzeug.wrappers import Response
 
 from flask_bootstrap import Bootstrap
-from flask_wtf.csrf import CSRFProtect
+# from flask_wtf.csrf import CSRFProtect
 
 from app.utils.local import thread_local
 from app.storage.database import create_db, db
@@ -77,8 +77,8 @@ def create_app():
         SECRET_KEY="powerful secretkey",
         WTF_CSRF_SECRET_KEY="a csrf secret key"
     ))
-    csrf = CSRFProtect(flask_app)
-    csrf.init_app(flask_app)
+    # csrf = CSRFProtect(flask_app)
+    # csrf.init_app(flask_app)
     Bootstrap(flask_app)
     with flask_app.app_context():
         configure_blueprints(flask_app)

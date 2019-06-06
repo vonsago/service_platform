@@ -13,6 +13,7 @@ flask-bootstrap = "*"
 flask-caching = "*"
 flask-wtf = "*"
 marshmallow = "*"
+pytest = "*"
 
 [dev-packages]
 requests = ">=2.20.0"

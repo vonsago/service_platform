@@ -15,6 +15,7 @@ LOG = logging.getLogger(__name__)
 class DockerClient():
     def __init__(self):
         self.client = None
+        self.has_login = False
 
     def __enter__(self):
         if self.client:
@@ -31,6 +32,14 @@ class DockerClient():
         if self.client:
             self.client.close()
         self.client = None
+
+    def login(self, username, password, registry, **kwargs):
+        if not self.client:
+            return False
+        return self.client.login(username=username, password=password, registry=registry if registry else "https://index.docker.io/v1/")
+
+    def version(self):
+        return self.client.version()
 
     def pull_images(self, images):
         images = [self.client.images.pull(im) for im in images]

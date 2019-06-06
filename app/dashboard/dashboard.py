@@ -5,7 +5,7 @@
 # @File    : dashboard.py
 # @Software: PyCharm
 
-from flask import render_template, flash
+from flask import render_template, flash, request, jsonify
 from app.docker_client.docker_ops import DockerClient
 
 def show_dashboard():
@@ -13,3 +13,12 @@ def show_dashboard():
         if not docker:
             flash("Error: Docker Service Is Not Available !")
     return render_template("index.html")
+
+
+def docker_login_view():
+    login_data = request.get_json()
+    username = login_data.get("username")
+    password = login_data.get("password")
+    registry = login_data.get("registry")
+    with DockerClient() as docker:
+        return jsonify(docker.login(username, password, registry)), 200
