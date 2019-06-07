@@ -14,6 +14,7 @@ flask-caching = "*"
 flask-wtf = "*"
 marshmallow = "*"
 pytest = "*"
+flask-cors = "*"
 
 [dev-packages]
 requests = ">=2.20.0"

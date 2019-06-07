@@ -7,7 +7,8 @@
 > Created Time: 三  8/29 19:52:52 2018
 '''
 
-from flask import g, request, flash, render_template, redirect, url_for
+import json
+from flask import jsonify, request, flash, render_template, redirect, url_for, Response
 from app.docker_client.docker_ops import DockerClient
 from .forms import CreateInstanceForm
 from .schema import InstanceSchema
@@ -51,7 +52,8 @@ def list_instances():
                      "created": "xxx"})
 
             comments.append(instance.data)
-    return render_template("list_instances.html", comments=comments)
+    return jsonify(comments), 200
+    #return render_template("list_instances.html", comments=comments)
 
 
 def stop_instance(instance_id):

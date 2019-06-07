@@ -10,6 +10,7 @@ import logging
 from uuid import uuid4
 
 from flask import Flask, g, request
+from flask_cors import *
 from werkzeug.exceptions import HTTPException, InternalServerError
 from werkzeug.wrappers import Response
 
@@ -79,6 +80,7 @@ def create_app():
     ))
     # csrf = CSRFProtect(flask_app)
     # csrf.init_app(flask_app)
+    CORS(flask_app, supports_credentials=True)
     Bootstrap(flask_app)
     with flask_app.app_context():
         configure_blueprints(flask_app)

@@ -20,7 +20,7 @@ instance_management.add_url_rule(
         )
 
 instance_management.add_url_rule(
-        rule="/v1/instance_view",
+        rule="/v1/instances",
         endpoint="list_instances",
         view_func=list_instances,
         methods=["GET"]
