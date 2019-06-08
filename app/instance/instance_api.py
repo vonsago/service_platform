@@ -27,14 +27,14 @@ instance_management.add_url_rule(
         )
 
 instance_management.add_url_rule(
-        rule="/v1/stop_instance/<instance_id>",
+        rule="/v1/instances/<instance_id>/stop",
         endpoint="stop_instance",
         view_func=stop_instance,
-        methods=["POST"]
+        methods=["DELETE"]
         )
 
 instance_management.add_url_rule(
-        rule="/v1/restart/<instance_id>",
+        rule="/v1/instances/<instance_id>/restart",
         endpoint="restart_instance",
         view_func=restart_instance,
         methods=["POST"]
