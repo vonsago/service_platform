@@ -37,22 +37,32 @@ def instance_create():
 
 
 def list_instances():
-    comments = []
+    instances = []
     with DockerClient() as docker:
         containers = docker.list_containers()
         for container in containers:
             try:
-                instance = InstanceSchema().load(
-                    {"name":container.image.tags[0], "short_id":container.short_id ,"status":container.status,
-                     "created":container.attrs.get("Created")})
+                instance = {
+                    "name": container.name,
+                    "short_id": container.short_id,
+                    "status":container.status,
+                    "prots": json.dumps(container.ports),
+                    "image": container.image.tags[0],
+                    "created": container.attrs.get("Created")
+                }
             except:
                 #todo fix
-                instance = InstanceSchema().load(
-                    {"name": 'xxx', "short_id": container.short_id, "status": "xxx",
-                     "created": "xxx"})
+                instance = {
+                    "name": 'xxx',
+                    "short_id": container.short_id,
+                    "status": "xxx",
+                    "prots": "xxx",
+                    "image": "xxx",
+                    "created": "xxx"
+                }
 
-            comments.append(instance.data)
-    return jsonify(comments), 200
+            instances.append(instance)
+    return jsonify(instances), 200
     #return render_template("list_instances.html", comments=comments)
 
 
