@@ -36,6 +36,16 @@ def instance_create():
     return render_template('create_instance.html', form=form)
 
 
+def instance_create_view():
+    instance = request.get_json()
+    image = instance.get("image")
+    port = {"3306/tcp": instance.get("port")}
+    volumes = instance.get("volumes").split(",")
+    with DockerClient() as docker:
+        container = docker.run(image, ports=port, volumes=volumes)
+    return jsonify({}), 200
+
+
 def list_instances():
     instances = []
     with DockerClient() as docker:
@@ -75,10 +85,11 @@ def stop_instance(instance_id):
             flash(f"Stop {instance_id} Success.")
         else:
             flash(f"Stop Failed.")
-    return  redirect(url_for('dashboard.dashboard'))
+    return jsonify({}), 200
+
 
 def restart_instance(instance_id):
     with DockerClient() as docker:
         if docker.restart(instance_id):
             flash(f"Restart Instance {instance_id} Success.")
-    return  redirect(url_for('dashboard.dashboard'))
+    return jsonify({}), 200

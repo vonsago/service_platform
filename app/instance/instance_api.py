@@ -8,15 +8,15 @@
 '''
 
 from flask import Blueprint
-from .instance import instance_create, list_instances, stop_instance, restart_instance
+from .instance import instance_create_view, list_instances, stop_instance, restart_instance
 
 instance_management = Blueprint("instance_management", __name__)
 
 instance_management.add_url_rule(
-        rule="/v1/instance",
+        rule="/v1/instances",
         endpoint="create_instance",
-        view_func=instance_create,
-        methods=["GET", "POST"]
+        view_func=instance_create_view,
+        methods=["POST"]
         )
 
 instance_management.add_url_rule(
