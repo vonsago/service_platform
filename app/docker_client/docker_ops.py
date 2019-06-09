@@ -75,7 +75,7 @@ class DockerClient():
                 return container
         return None
 
-    def run(self, image_tag, ports, volumes, environment=["MYSQL_ROOT_PASSWORD=dangerous"],backend=True):
+    def run(self, image_tag, ports, volumes, environment=None, backend=True):
         if not self.exsit_image(image_tag):
             self.pull_images([image_tag])
 
@@ -104,18 +104,3 @@ class DockerClient():
             if short_id == container.short_id:
                 container.restart()
         return True
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
-
-    with DockerClient() as docker:
-        s = docker.run("mysql:5.7.19", ports={"3306/tcp": 3306},volumes=["mysqldata:/var/lib/mysql"])
-        print(s.short_id)
-
-        #print(docker_client.list_containers()[0].status)
-        print(docker.list_containers())
-
-        docker.stop("mysql:5.7.19")
-

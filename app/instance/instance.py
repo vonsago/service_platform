@@ -14,6 +14,18 @@ from .forms import CreateInstanceForm
 from .schema import InstanceSchema
 from markupsafe import escape
 
+
+IMAGE_TYPE_PROT_MAPPER = {
+    'mysql': {"3306/tcp": 3306},
+    'nginx': {"8888/tcp": 80},
+    'redis': {"6379/tcp": 6379},
+    'jenkins': {"8080/tcp": 8080},
+    'mongo': {"27017/tcp": 27017},
+    'tomcat': {"3306/tcp": 3306},
+    'other': {},
+
+}
+
 def update_instance_status(image_tag):
     with DockerClient() as docker:
         docker.exsit_container(image_tag)
@@ -39,11 +51,24 @@ def instance_create():
 def instance_create_view():
     instance = request.get_json()
     image = instance.get("image")
-    port = {"3306/tcp": instance.get("port")}
-    volumes = instance.get("volumes").split(",")
+    image_type = instance.get("type")
+    ports = instance.get("ports")
+    volumes = instance.get("volumes").split(",") if instance.get("volumes") else []
+    environment = instance.get("environment")
+
+    if not environment and image_type == "mysql":
+        environment = ["MYSQL_ROOT_PASSWORD=dangerous"]
+    if not ports:
+        ports = IMAGE_TYPE_PROT_MAPPER.get(image_type, "")
+    else:
+        new_ports = {}
+        for port in ports.split(','):
+            new_ports[port.split(":")[0]] = port.split(":")[-1]
+        ports = new_ports
+
     with DockerClient() as docker:
-        container = docker.run(image, ports=port, volumes=volumes)
-    return jsonify({}), 200
+        container = docker.run(image, ports=ports, volumes=volumes, environment=environment)
+    return jsonify({"short_id": container.short_id}), 200
 
 
 def list_instances():
