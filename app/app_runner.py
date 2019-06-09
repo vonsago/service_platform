@@ -32,9 +32,11 @@ def configure_models():
 def configure_blueprints(flask_app):
     from app.instance.instance_api import instance_management
     from app.dashboard.dashboard_api import dashboard_management
+    from app.images.docker_images_api import dockerimages_management
 
     flask_app.register_blueprint(instance_management)
     flask_app.register_blueprint(dashboard_management)
+    flask_app.register_blueprint(dockerimages_management)
 
 def add_app_hook(app):
     @app.errorhandler(APIException)

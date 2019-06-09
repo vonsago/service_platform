@@ -104,3 +104,15 @@ class DockerClient():
             if short_id == container.short_id:
                 container.restart()
         return True
+
+    def build_image(self, dockerfile, name):
+        image = self.client.images.build(path=dockerfile, tag=name, rm=True, nocache=True)
+        return image
+
+    def delete_image(self, short_id):
+        try:
+            self.client.images.remove(image=short_id)
+        except Exception as e:
+            LOG.info(e)
+            return False
+        return True
