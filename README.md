@@ -6,9 +6,12 @@
 ### 并在yml文件所在目录运行命令
     docker-compose up -d
 
-### url
-    127.0.0.1:8005
-
+### 本地运行
+    `python3 app/app_runner.py`
+    
+    同时本地运行前端repo
+    
+    [UI](https://github.com/vonsago/DDP_UI)
 ### TODO
 - [ ] 用户管理
 - [ ] 数据可视化
