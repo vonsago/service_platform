@@ -7,11 +7,9 @@
     docker-compose up -d
 
 ### 本地运行
-    `python3 app/app_runner.py`
+`python3 app/app_runner.py`
     
-    同时本地运行前端repo
-    
-    [UI](https://github.com/vonsago/DDP_UI)
+同时本地运行[前端UI](https://github.com/vonsago/DDP_UI)
 ### TODO
 - [ ] 用户管理
 - [ ] 数据可视化
