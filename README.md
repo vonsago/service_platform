@@ -8,8 +8,10 @@
 
 ### 本地运行
 `python3 app/app_runner.py`
-    
+
+### 运行前端
 同时本地运行[前端UI](https://github.com/vonsago/DDP_UI)
+
 ### TODO
 - [ ] 用户管理
 - [ ] 数据可视化
