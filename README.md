@@ -1,4 +1,7 @@
 # service_platform
+
+docker dashboard 
+
 ### 环境准备
     需要有docker环境支持
     下载项目中的docker-compose.yml文件
